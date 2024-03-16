@@ -5,7 +5,19 @@
 *@
 @{
 }
-@foreach(var item in Model)
+@foreach (var item in Model)
 {
-    <h1>@item.Title</h1>
+    <!-- Post preview-->
+    <div class="post-preview">
+        <a href="/post/detail/@item.Id">
+            <h2 class="post-title">@item.Title</h2>
+        </a>
+        <h3 class="post-subtitle">@item.Summary</h3>
+        <p class="post-meta">
+            Posted by
+            <a href="#!">@item.People.firstName @item.People.lastName</a>
+        </p>
+    </div>
+    <!-- Divider-->
+    <hr class="my-4" />
 }

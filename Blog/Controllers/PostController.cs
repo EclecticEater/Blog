@@ -1,5 +1,7 @@
 ﻿using Blog.Data;
+using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Controllers
 {
@@ -13,8 +15,13 @@ namespace Blog.Controllers
         }
         public IActionResult Index()
         {
-            var posts = _context.Posts.ToList();
+            var posts = _context.Posts.Include(a => a.People).ToList();
             return View(posts);
+        }
+        public IActionResult Detail(int id)
+        {
+            Post post = _context.Posts.Include(a => a.People).FirstOrDefault(c => c.Id == id);
+            return View(post);
         }
     }
 }
