@@ -44,5 +44,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.PopsBlogApp_02B2 }}
+        publish-profile: ${{ secrets.PopsBlogApp_BC5E }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
