@@ -11,7 +11,7 @@ builder.Services.AddScoped<IPeopleRepository, PeopleRepository>();
 builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING"));
 });
 var app = builder.Build();
 
