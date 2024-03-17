@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Blog.Models
 {
     public class Post
     {
-        [Key]
+        [Key][BindNever]
 
         public int Id { get; set; }
 
@@ -19,7 +20,7 @@ namespace Blog.Models
 
         public int PeopleId { get; set; }
 
-        public People People { get; set; }
+        public People? People { get; set; }
 
 
     }

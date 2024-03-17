@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Repository
 {
-    public class PostRespository : IPostRespository
+    public class PostRepository : IPostRepository
 
     {
         private readonly ApplicationDbContext _context;
 
-        public PostRespository(ApplicationDbContext context) 
+        public PostRepository(ApplicationDbContext context) 
         {
             _context = context;
         }

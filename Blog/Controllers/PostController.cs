@@ -1,27 +1,47 @@
 ﻿using Blog.Data;
+using Blog.Interfaces;
 using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace Blog.Controllers
 {
     public class PostController : Controller
 
     {
-        private readonly ApplicationDbContext _context;
-        public PostController(ApplicationDbContext context) 
+        private readonly IPostRepository _postRepository;
+        private readonly ILogger<PostController> _logger;
+        public PostController(ILogger<PostController> logger, IPostRepository postRepository) 
         { 
-            _context = context;
+            _postRepository = postRepository;
+            _logger = logger;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var posts = _context.Posts.Include(a => a.People).ToList();
+            IEnumerable<Post> posts = await _postRepository.GetAll();
             return View(posts);
         }
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            Post post = _context.Posts.Include(a => a.People).FirstOrDefault(c => c.Id == id);
-            return View(post);
+            Post posts = await _postRepository.GetByIdAsync(id);
+            return View(posts);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Post post)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(post);
+            }
+            _postRepository.Add(post);
+            return RedirectToAction("Index");
         }
     }
 }

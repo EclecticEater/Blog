@@ -1,10 +1,14 @@
 using Blog.Data;
+using Blog.Interfaces;
+using Blog.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IPeopleRepository, PeopleRepository>();
+builder.Services.AddScoped<IPostRepository, PostRepository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

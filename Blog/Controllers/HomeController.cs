@@ -1,4 +1,5 @@
 using Blog.Data;
+using Blog.Interfaces;
 using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,18 +10,19 @@ namespace Blog.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext _context;
+        private readonly IPostRepository _postRepository;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger, IPostRepository postRepository)
         {
+
             _logger = logger;
-            _context = context;
+            _postRepository = postRepository;
         }
 
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var posts = _context.Posts.Include(a => a.People).ToList();
+            IEnumerable<Post> posts = await _postRepository.GetAll();
             return View(posts);
         }
 

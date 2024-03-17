@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Blog.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240315221224_InitialCreate")]
+    [Migration("20240316225821_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -57,9 +57,8 @@ namespace Blog.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PeopleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PeopleId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Summary")
                         .IsRequired()
@@ -69,38 +68,27 @@ namespace Blog.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("firstNamePeopleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("lastNamePeopleId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("firstNamePeopleId");
-
-                    b.HasIndex("lastNamePeopleId");
+                    b.HasIndex("PeopleId");
 
                     b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("Blog.Models.Post", b =>
                 {
-                    b.HasOne("Blog.Models.People", "firstName")
-                        .WithMany()
-                        .HasForeignKey("firstNamePeopleId")
+                    b.HasOne("Blog.Models.People", "People")
+                        .WithMany("Posts")
+                        .HasForeignKey("PeopleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Blog.Models.People", "lastName")
-                        .WithMany()
-                        .HasForeignKey("lastNamePeopleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("People");
+                });
 
-                    b.Navigation("firstName");
-
-                    b.Navigation("lastName");
+            modelBuilder.Entity("Blog.Models.People", b =>
+                {
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }
