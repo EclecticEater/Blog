@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.ComponentModel.DataAnnotations;
+﻿using Blog.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace Blog.Models
+namespace Blog.ViewModels
 {
-    public class Post
+    public class PostViewModel
     {
-        [Key]
-
-        public int Id { get; set; }
-
+   
         public string Title { get; set; }
 
         public string Summary { get; set; }
@@ -21,7 +19,6 @@ namespace Blog.Models
         public int PeopleId { get; set; }
 
         public People? People { get; set; }
-
 
     }
 }

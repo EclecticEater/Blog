@@ -1,7 +1,9 @@
 ﻿using Blog.Data;
 using Blog.Interfaces;
 using Blog.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
@@ -17,6 +19,7 @@ namespace Blog.Controllers
             _postRepository = postRepository;
             _logger = logger;
         }
+        
         public async Task<IActionResult> Index()
         {
             IEnumerable<Post> posts = await _postRepository.GetAll();
@@ -27,7 +30,7 @@ namespace Blog.Controllers
             Post posts = await _postRepository.GetByIdAsync(id);
             return View(posts);
         }
-
+        
         public IActionResult Create()
         {
             return View();
