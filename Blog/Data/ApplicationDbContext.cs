@@ -8,8 +8,6 @@ namespace Blog.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base (options) 
         { 
         }
-        public DbSet<People> People { get; set; }
-
         public DbSet<Post> Posts { get; set; }
 
 

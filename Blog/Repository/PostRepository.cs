@@ -28,12 +28,12 @@ namespace Blog.Repository
 
         public async Task<IEnumerable<Post>> GetAll()
         {
-            return await _context.Posts.Include(a => a.People).ToListAsync();
+            return await _context.Posts.ToListAsync();
         }
 
         public async Task<Post> GetByIdAsync(int id)
         {
-            return await _context.Posts.Include(a => a.People).FirstOrDefaultAsync(i => i.Id == id);
+            return await _context.Posts.FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public bool Save()

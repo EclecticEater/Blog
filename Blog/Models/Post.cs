@@ -16,12 +16,12 @@ namespace Blog.Models
 
         public string Body { get; set; }
 
-        [ForeignKey("People")]
+        public string? DisplayName { get; set; }
 
-        public int PeopleId { get; set; }
-
-        public People? People { get; set; }
-
+        [Display(Name = "Created Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? CreatedDate { get; set; }
 
     }
 }

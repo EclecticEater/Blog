@@ -14,11 +14,5 @@ namespace Blog.ViewModels
 
         public string Body { get; set; }
 
-        [ForeignKey("People")]
-
-        public int PeopleId { get; set; }
-
-        public People? People { get; set; }
-
     }
 }

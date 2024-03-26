@@ -41,7 +41,9 @@
                 @{
                     int counter = 0;
 
-                    foreach (var item in Model)
+                    var orderedModel = Model.OrderByDescending(s => s.CreatedDate);
+
+                    foreach (var item in orderedModel)
                     {
                         if (counter > 4)
                         {
@@ -55,8 +57,8 @@
                             </a>
                             <h3 class="post-subtitle">@item.Summary</h3>
                             <p class="post-meta">
-                                Posted by
-                                <a href="#!">@item.People.firstName @item.People.lastName</a>
+                                Posted by @item.DisplayName on @item.CreatedDate
+                                <a href="#!"></a>
                         </p>
                         </div>
                         <!-- Divider-->

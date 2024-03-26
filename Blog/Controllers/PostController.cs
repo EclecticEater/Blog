@@ -30,19 +30,25 @@ namespace Blog.Controllers
             Post posts = await _postRepository.GetByIdAsync(id);
             return View(posts);
         }
-        
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Create(Post post)
         {
+            var NameClaim = User.Claims.First(c => c.Type == "name");
+            var displayname = NameClaim.Value;
+
             if (!ModelState.IsValid)
             {
                 return View(post);
             }
+            post.CreatedDate = DateTime.Now;
+            post.DisplayName = displayname;
             _postRepository.Add(post);
             return RedirectToAction("Index");
         }
