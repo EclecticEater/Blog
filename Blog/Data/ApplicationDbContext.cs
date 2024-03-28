@@ -10,6 +10,8 @@ namespace Blog.Data
         }
         public DbSet<Post> Posts { get; set; }
 
+        public DbSet<Email> Emails { get; set; }
+
 
     }
 }

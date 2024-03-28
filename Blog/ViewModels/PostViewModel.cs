@@ -1,9 +1,4 @@
-﻿using Blog.Models;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace Blog.ViewModels
+﻿namespace Blog.ViewModels
 {
     public class PostViewModel
     {

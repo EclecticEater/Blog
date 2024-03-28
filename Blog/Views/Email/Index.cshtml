@@ -1,0 +1,58 @@
+﻿@using Blog.ViewModels
+@model EmailViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="navbar-container">
+</div>
+<div class="main-container">
+    <section class="space-sm">
+        <div class="container">
+            <div class="row mb-5">
+                <!--end of col-->
+            </div>
+            <!--end of row-->
+            <div class="row flex-md-row card card-md">
+                <div class="card-body bg-secondary">
+                    <div class="text-center mb-5">
+                        <h1 class="h2 mb-2">Contact Me</h1>
+                        <span>hi</span>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-6 col-lg-5">
+                            <form method="post" asp-action="Index">
+                                <div class="form-row form-group">
+                                    <div class="col">
+                                        <input asp-for="userName" class="form-control form-control-lg" placeholder="your name" />
+                                        <span asp-validation-for="userName" class="text-danger"></span>
+                                    </div>
+                                <div class="form-row form-group">
+                                    <div class="col">
+                                            <textarea asp-for="emailAddress" class="form-control form-control-lg" placeholder="email address" rows="2"></textarea>
+                                            <span asp-validation-for="emailAddress" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row form-group">
+                                    <div class="col">
+                                            <textarea asp-for="message" class="form-control form-control-lg" placeholder="message" rows="10"></textarea>
+                                            <span asp-validation-for="message" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row form-group">
+                                    <div class="col">
+                                        <button class="btn btn-block btn-success btn-lg" type="submit">Post</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end of container-->
+    </section>
+    <!--end of section-->
+</div>
